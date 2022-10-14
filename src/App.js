@@ -18,6 +18,9 @@ import { Nav } from 'react-bootstrap';
 //Import the BrowserRouter Routes and Route after installing via npm in cmd 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import { Read } from './components/Read';
+import { Create } from './components/Create';
+
 class App extends React.Component {
 
   render() {
@@ -37,8 +40,12 @@ class App extends React.Component {
               <Nav className="me-auto">
                 {/* Create the three links to navigate to the various components */}
                 <Nav.Link href='/'>Home</Nav.Link>
-                <Nav.Link href="/read">Read</Nav.Link>
+               
                 <Nav.Link href="/create">Create</Nav.Link>
+                <Nav.Link href="/read">Read</Nav.Link> 
+                
+                {/* <Nav.Link href="/header">Header</Nav.Link>
+                <Nav.Link href="/footer">Footer</Nav.Link> */}
               </Nav>
             </Container>
           </Navbar>
@@ -46,16 +53,17 @@ class App extends React.Component {
           
           {/* Set The Routes with a route linking to each component */}
           <Routes>
+            {/*
+            Older code from the previous lab
+            <Route path='/header' element={<Header></Header>}></Route>
+            <Route path='/Footer' element={<Footer></Footer>}></Route> */}
+            
             <Route path='/' element={<Content></Content>}></Route>
+            
+            <Route path='/read' element={<Read></Read>}></Route>
+            <Route path='/create' element={<Create></Create>}></Route>
           </Routes>
 
-          <Routes>
-            <Route path='/read' element={<Header></Header>}></Route>
-          </Routes>
-
-          <Routes>
-            <Route path='/create' element={<Footer></Footer>}></Route>
-          </Routes>
         </div>
       </Router>
     );
