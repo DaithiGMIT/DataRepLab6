@@ -1,49 +1,38 @@
 import React from "react";
 //import Book.js to use in the render
 import { Books } from "./Books";
+//import axios to act as a http client to recieve the json from the web
+import axios from "axios";
 
 export class Read extends React.Component{
 
+    //when component becomes visible on the page
+    componentDidMount() {
+        //calls the web address for the json file
+        //function in the then() waits for the get() to complete before executing
+        //if the get() fails the catch() executes
+        axios.get('https://jsonblob.com/api/jsonblob/1027219693823606784')
+        .then((response)=>{
+            this.setState({
+                //populates the book[] in state with the data recieved from the get()
+                books:response.data
+            })
+
+        })
+        .catch((error)=>{
+            //informs console if there is an error
+            console.log(error);
+        });
+
+    }
+    
     //All Data for the class is stored in the state
     state = {
         //add the books Json
         //{}objects
         //[]array
-        books:[
-            {
-            "title": "Learn Git in a Month of Lunches",
-            "isbn": "1617292419",
-            "pageCount": 0,
-            "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/umali.jpg",
-            "status": "MEAP",
-            "authors": ["Rick Umali"],
-            "categories": []
-            },
-            {
-            "title": "MongoDB in Action, Second Edition",
-            "isbn": "1617291609",
-            "pageCount": 0,
-            "thumbnailUrl":"https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/banker2.jpg",
-            "status": "MEAP",
-            "authors": [
-            "Kyle Banker",
-            "Peter Bakkum",
-            "Tim Hawkins",
-            "Shaun Verch",
-            "Douglas Garrett"
-            ],
-            "categories": []
-            },
-            {
-            "title": "Getting MEAN with Mongo, Express, Angular, and Node",
-            "isbn": "1617292036",
-            "pageCount": 0,
-            "thumbnailUrl":"https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/sholmes.jpg",
-            "status": "MEAP",
-            "authors": ["Simon Holmes"],
-            "categories": []
-            }
-            ]
+        //Empty the Array for lab 4
+        books:[]
     }
 
 

@@ -40,9 +40,10 @@ class App extends React.Component {
               <Nav className="me-auto">
                 {/* Create the three links to navigate to the various components */}
                 <Nav.Link href='/'>Home</Nav.Link>
-               
-                <Nav.Link href="/create">Create</Nav.Link>
+                
                 <Nav.Link href="/read">Read</Nav.Link> 
+                <Nav.Link href="/create">Create</Nav.Link>
+                
                 
                 {/* <Nav.Link href="/header">Header</Nav.Link>
                 <Nav.Link href="/footer">Footer</Nav.Link> */}
