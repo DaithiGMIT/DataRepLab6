@@ -1,4 +1,6 @@
 import React from "react";
+//import axios to in  order to post book objects to server
+import axios from "axios";
 
 //tutorial used https://reactjs.org/docs/forms.html
 
@@ -14,6 +16,7 @@ export class Create extends React.Component {
         this.onChangeBookAuthor = this.onChangeBookAuthor.bind(this);
 
         //create a state that will take the data entered
+        //added url to state for this lab
         this.state = {
             title:'',
             cover:'',
@@ -27,7 +30,28 @@ export class Create extends React.Component {
         //display the states values on error
         //future labs will have this data sent to the server and update the api
         console.log(`${this.state.title},${this.state.cover},${this.state.author}`);
+        
+        //using the book data from state create and book object
+        const book = {
+            title: this.state.title,
+            cover: this.state.cover,
+            author: this.state.author,
+            url: this.state.url
+        }
+
+        //using axios post the book object back to the servers book api
+        axios.post('http://localhost:4000/api/books', book)
+            .then()
+            .catch();
+
+        //after the data is submitted the form on the page can be reset to blank in the state
+        this.setState({
+            title: '',
+            cover: '',
+            author: ''
+        })
     }
+
     //title change event
     onChangeBookTitle(e) {
         this.setState({
@@ -46,6 +70,7 @@ export class Create extends React.Component {
             cover: e.target.value
         })
     }
+
 
     render() {
 
@@ -70,7 +95,7 @@ export class Create extends React.Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label>Add BookCover: </label>
+                        <label>Add Book Cover: </label>
                         <input type="text"
                             className="form-control"
                             value={this.state.cover}
